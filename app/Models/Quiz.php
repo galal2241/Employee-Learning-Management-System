@@ -20,4 +20,11 @@ class Quiz extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany(Employee::class, 'employee_quizzes')
+                    ->withPivot('answers', 'score', 'passed', 'submitted_at')
+                    ->withTimestamps();
+    }
 }
