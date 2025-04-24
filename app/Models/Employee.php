@@ -19,6 +19,13 @@ class Employee extends Authenticatable implements JWTSubject
                     ->withTimestamps();
     }
 
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class, 'employee_lessons')
+                    ->withPivot('completed', 'completed_at')
+                    ->withTimestamps();
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
