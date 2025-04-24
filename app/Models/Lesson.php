@@ -15,4 +15,11 @@ class Lesson extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany(Employee::class, 'employee_lessons')
+                    ->withPivot('completed', 'completed_at')
+                    ->withTimestamps();
+    }
 }
