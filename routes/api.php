@@ -9,6 +9,7 @@ use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\ProgressController;
 use App\Http\Controllers\API\QuestionController; // أضف الـ use statement ده
 use App\Http\Controllers\API\QuizSystemController;
+use App\Http\Controllers\API\DashboardController;
 
 Route::get('/test', function () {
     return response()->json(['message' => 'API is working']);
@@ -59,5 +60,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('courses/{courseId}/progress')->group(function () {
         Route::post('lessons/{lessonId}/complete', [ProgressController::class, 'completeLesson']);
         Route::get('/', [ProgressController::class, 'getProgress']);
-    });
 
+        Route::get('/certificate/{employeeId}/{course}', [App\Http\Controllers\CertificateController::class, 'generate'])->name('certificate.generate');
+        });
+        // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
