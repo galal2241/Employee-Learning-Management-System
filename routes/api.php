@@ -59,5 +59,6 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('courses/{courseId}/progress')->group(function () {
         Route::post('lessons/{lessonId}/complete', [ProgressController::class, 'completeLesson']);
         Route::get('/', [ProgressController::class, 'getProgress']);
-    });
 
+        Route::get('/certificate/{employeeId}/{courseId}', [App\Http\Controllers\CertificateController::class, 'generate'])->name('certificate.generate');
+    });
