@@ -1,66 +1,152 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Project Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Project Overview
 
-## About Laravel
+This project is a **Learning Management System (LMS) Dashboard** built using **Laravel 11.44.2** and **PHP 8.2.12**.  
+The dashboard displays **courses, lessons, quizzes, and certificates** for a sample employee. It is publicly accessible (no authentication required) and designed as a web application.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🎯 Objectives
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Provide a user-friendly dashboard to view enrolled courses, recent lessons, upcoming quizzes, and earned certificates.
+- Ensure the dashboard is accessible without login.
+- Seed the database with sample data for testing.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🔑 Key Features
 
-## Learning Laravel
+- Display list of courses with progress and completion status.
+- Show recent lessons with their completion status.
+- List upcoming or taken quizzes with scores.
+- Display earned certificates with a placeholder for downloading PDFs.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 2. Project Structure
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The project follows the standard Laravel structure with additional customizations for the dashboard:
 
-## Laravel Sponsors
+- routes/web.php: Defines web routes for the dashboard and login page.
+- routes/api.php: Contains API routes (not used for the dashboard in this case).
+- app/Http/Controllers/DashboardController.php: Handles the logic for displaying the dashboard.
+- resources/views/layouts/app.blade.php: The main layout template with a sidebar.
+- resources/views/dashboard.blade.php: The dashboard view displaying courses, lessons, quizzes, and certificates.
+- database/seeders/DatabaseSeeder.php: Seeds the database with sample data.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+## 3. Setup Instructions
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### ✅ Prerequisites
 
-## Contributing
+- PHP 8.2.12 or higher  
+- Composer  
+- Laravel 11.44.2  
+- MySQL (or any supported database)  
+- Node.js and NPM (optional for assets)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🛠️ Steps
 
-## Code of Conduct
+**Clone the Project**
+```bash
+git clone <repository-url>
+cd laravel_test1
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Install Dependencies
 
-## Security Vulnerabilities
+composer install
+Configure Environment
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Update .env with your database credentials
 
-## License
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Code Documentation
+
+4.1. 🧭 Routes (routes/web.php)
+GET / → Redirect to dashboard
+
+GET /dashboard → Display dashboard
+
+GET /login → Login placeholder (not used)
+
+
+4.2. 🧠 Controller (DashboardController.php)
+Handles dashboard logic:
+
+index() → Gathers and passes data to the view
+
+Helpers: getEmployeeCourses, getEmployeeLessons, etc.
+
+
+4.3. 📄 Views
+app.blade.php: Main layout with sidebar navigation (uses Bootstrap 5.3)
+
+dashboard.blade.php:
+
+Courses: list of enrolled courses with progress
+
+Lessons: recent lessons with completion status
+
+Quizzes: quizzes with scores or pending status
+
+Certificates: earned certificates with issuance dates
+
+
+4.4. 🌱 Seeder (DatabaseSeeder.php)
+Seeds test data:
+
+Employee (test@example.com)
+
+Course: Laravel Basics
+
+Lesson: Introduction to Laravel
+
+Quiz: Laravel Quiz
+
+Associations for completion and certificate display
+
+
+5. Usage
+Open the dashboard: http://127.0.0.1:8000/dashboard
+
+No login required
+
+Sample data is preloaded for testing
+
+
+6. Future Improvements
+Add login & auth middleware
+
+Implement:
+
+View details for courses
+
+Quiz-taking functionality
+
+PDF download for certificates (e.g., using mpdf)
+
+RTL & Arabic support
+
+Separate certificates table for scalability
+
+
+7. Troubleshooting
+❌ 404 Not Found
+Ensure /dashboard exists in routes/web.php
+
+Run: php artisan route:clear
+
+Check: php artisan route:list
+
+❌ View Not Found
+Ensure dashboard.blade.php and app.blade.php exist
+
+Run: php artisan view:clear
+
+❌ Database Errors
+Check .env configuration
+
+Run: php artisan migrate && php artisan db:seed
